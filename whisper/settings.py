@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2!#f@t-f^4yo=yf*fo0@8s5mb!@)ryrx-e6_n$q(&2e+#f13i%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #True
+DEBUG = False #True
 
 if DEBUG:
     ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1"]
@@ -75,17 +75,13 @@ WSGI_APPLICATION = 'whisper.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+import os
+import dj_database_url
 if DEBUG:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+        'default': dj_database_url.parse(os.environ.get('DB_EXT_URL'))
     }
 else:
-    import os
-    import dj_database_url
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DB_INT_URL'))
     }
