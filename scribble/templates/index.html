@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Leave a Scribble</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scribble Chat</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-4 sm:p-10">
@@ -15,20 +15,24 @@
         <form method="post" class="mb-6 flex flex-col sm:flex-row gap-2">
             {% csrf_token %}
             <input name="scribble" placeholder="Lascia una scritta onesta" class="p-2 border rounded flex-1">
-            <input name="tag" placeholder="Chi sei?" class="p-2 border rounded flex-1">
+            <input name="tag" placeholder="Anonimo" class="p-2 border rounded flex-1">
             <button class="bg-blue-600 text-white px-4 py-2 rounded mt-2 sm:mt-0 hover:bg-blue-700">Add</button>
         </form>
 
         <h3 class="text-xl font-semibold mb-4 text-gray-700">Note di questo sticker:</h3>
 
-        <!-- Lista scribbles -->
-        <ul class="space-y-3">
+        <!-- Lista scribbles stile chat -->
+        <ul class="space-y-4">
             {% for scribble in scribbles %}
-                <li class="p-3 bg-white rounded shadow break-words">
-                    <p class="text-gray-900">{{ scribble.scribble }}</p>
-                    <p class="text-sm text-gray-600 mt-1">
-                        — <strong>{{ scribble.tag }}</strong> - {{ scribble.created_at|date:"d/m/Y H:i" }}
-                    </p>
+                <li class="relative bg-white rounded-xl p-3 shadow max-w-full sm:max-w-[90%]">
+                    <!-- Tag in alto -->
+                    <div class="text-sm text-gray-500 mb-1 font-semibold">{{ scribble.tag }}</div>
+                    
+                    <!-- Testo principale -->
+                    <div class="break-words text-gray-900">{{ scribble.scribble }}</div>
+                    
+                    <!-- Data in basso a destra -->
+                    <div class="text-xs text-gray-400 mt-1 text-right">{{ scribble.created_at|date:"d/m/Y H:i" }}</div>
                 </li>
             {% endfor %}
         </ul>
