@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave a Scribble</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+    <h1 class="text-2xl font-bold mb-5">Vai in culo idiota</h1>
+
+    <form method="post" class="mb-5">
+        {% csrf_token %}
+        <input name="scribble" placeholder="Lascia una scritta onesta" class="p-2 border rounded mr-2">
+        <input name="tag" placeholder="Chi sei?" class="p-2 border rounded mr-2">
+        <button class="bg-blue-600 text-white px-3 py-1 rounded">Add</button>
+    </form>
+
+    <h3 class="text-xl font-bold mb-5">Note di questo sticker:</h3>
+
+    <ul>
+        {% for scribble in scribbles %}
+            <li class="mb-2 p-2 bg-white rounded shadow">
+                {{ scribble.scribble }} — <strong>{{ scribble.tag }}</strong> - {{ scribble.created_at|date:"d/m/Y H:i" }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
