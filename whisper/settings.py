@@ -23,9 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2!#f@t-f^4yo=yf*fo0@8s5mb!@)ryrx-e6_n$q(&2e+#f13i%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #True
 
-ALLOWED_HOSTS = []
+if DEBUG:
+    ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1"]
+else:
+    ALLOWED_HOSTS = ["djanloo.xyz", "www.djanloo.xyz", 'fullstack-demo-e1xs.onrender.com']
 
 
 # Application definition
