@@ -21,7 +21,7 @@ def index(request):
             scribble_point=scribble_info
         )
         return redirect('/scribble')
-
+    print("Goo goo ga ga")
     scribbles = Scribble.objects.filter(
         scribble_point=scribble_info
     ).order_by('-created_at')
