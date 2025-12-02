@@ -11,8 +11,8 @@ class ScribblePointInfo(models.Model):
     @property
     def image_url(self):
         if self.image_name:
-            return f'/static/images/{self.image_name}'
-        return '/static/images/default.png'
+            return f'{self.image_name}'
+        return 'default.png'
 
 class Scribble(models.Model):
     scribble = models.TextField()
