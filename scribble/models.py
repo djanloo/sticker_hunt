@@ -3,9 +3,16 @@ from django.db import models
 class ScribblePointInfo(models.Model):
     token = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=30)
+    image_name = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.token
+
+    @property
+    def image_url(self):
+        if self.image_name:
+            return f'/static/images/{self.image_name}'
+        return '/static/images/default.png'
 
 class Scribble(models.Model):
     scribble = models.TextField()
